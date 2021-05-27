@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatasTipoTwitter.ConsoleApp", "DatasTipoTwitter.ConsoleApp\DatasTipoTwitter.ConsoleApp.csproj", "{4D320FAF-5360-432C-888E-39633C9CC013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTipoTwitter.Test", "DataTipoTwitter.Test\DataTipoTwitter.Test.csproj", "{A416E996-858A-4123-863C-A60B1E5F13EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D320FAF-5360-432C-888E-39633C9CC013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D320FAF-5360-432C-888E-39633C9CC013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D320FAF-5360-432C-888E-39633C9CC013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D320FAF-5360-432C-888E-39633C9CC013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A416E996-858A-4123-863C-A60B1E5F13EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A416E996-858A-4123-863C-A60B1E5F13EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A416E996-858A-4123-863C-A60B1E5F13EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A416E996-858A-4123-863C-A60B1E5F13EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF9E61B8-8485-48EA-BF2F-C2F2232272E7}
+	EndGlobalSection
+EndGlobal
