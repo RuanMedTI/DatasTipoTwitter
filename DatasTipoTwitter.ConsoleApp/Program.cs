@@ -9,7 +9,7 @@ namespace DatasTipoTwitter
         static void Main()
         {
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Datas tipo Twitter 1.1");
             Console.ResetColor();
 

@@ -57,7 +57,6 @@ namespace DatasTipoTwitter
                     string.Format("há {0} anos atrás", timeSpan.Days / 365) :
                     "há um ano atrás";
             }
-
             return numeros + result;
         }
     }
