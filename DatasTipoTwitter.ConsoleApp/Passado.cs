@@ -1,58 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DatasTipoTwitter.ConsoleApp
+namespace DatasTipoTwitter
 {
-    public class Passado : Dicionario
+    
+    internal class Passado
     {
-        public string ValidarDatas()
+        internal string ValidarDatas(DateTime dateTime, DateTime dataAgora)
         {
-            const int SEGUNDO = 1;
-            const int MINUTO = 60 * SEGUNDO;
-            const int HORA = 60 * MINUTO;
-            const int DIA = 24 * HORA;
-            const int MES = 30 * DIA;
+            string[] numeros = new[] { "zero", "um", "dois", "três", "quatro", "cinco", "seis", "sete",
+            "oito", "nove", "dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis",
+            "dezessete", "dezoito", "dezenove", "vinte", "vinte e um", "vinte e dois", "vinte e três",
+            "vinte e quatro", "vinte e cinco", "vinte e seis", "vinte e sete", "vinte e oito",
+            "vinte e nove", "trinta", "trinta e um", "trinta e dois", "trinta e três", "trinta e quatro",
+            "trinta e cinco", "trinta e seis", "trinta e sete", "trinta e oito", "trinta e nove",
+            "quarenta", "quarenta e um", "quarenta e dois", "quarenta e três", "quarenta e quatro",
+            "quarenta e cinco", "quarenta e seis", "quarenta e sete", "quarenta e oito",
+            "quarenta e nove", "cinquenta", "cinquenta e um", "cinquenta e dois", "cinquenta e três",
+            "cinquenta e quatro", "cinquenta e cinco", "cinquenta e seis", "cinquenta e sete",
+            "cinquenta e oito", "cinquenta e nove", "sessenta",
+            }; 
 
-            DateTime Data1 = new DateTime(2020, 12, 08);
+            string result = string.Empty;
+            var timeSpan = DateTime.Now.Subtract(dateTime);
 
-            var ts = new TimeSpan(DateTime.UtcNow.Ticks - Data1.Ticks);
-            double dataValida = Math.Abs(ts.TotalSeconds);
-
-            if (dataValida < 1 * MINUTO)
-                return ts.Seconds == 1 ? "um segundo atrás" : ts.Seconds + " segundos atrás";
-
-            else if (dataValida < 2 * MINUTO)
-                return "um minuto atrás";
-
-            else if (dataValida < 45 * MINUTO)
-                return ts.Minutes + " minutos atrás";
-
-            else if (dataValida < 90 * MINUTO)
-                return "uma hora atrás";
-
-            else if (dataValida < 24 * HORA)
-                return ts.Hours + " horas atrás";
-
-            else if (dataValida < 48 * HORA)
-                return "ontem";
-
-            else if (dataValida < 30 * DIA)
-                return ts.Days + " dias atrás";
-
-            else if (dataValida < 12 * MES)
+            if (timeSpan <= TimeSpan.FromSeconds(60))
             {
-                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "um mês atrás" : months + " meses atrás";
+                result = string.Format("{0} segundos atrás", timeSpan.Seconds);
+            }
+            else if (timeSpan <= TimeSpan.FromMinutes(60))
+            {
+                result = timeSpan.Minutes > 1 ?
+                    string.Format("há {0} minutos atrás", timeSpan.Minutes) :
+                    "há um minuto atrás";
+            }
+            else if (timeSpan <= TimeSpan.FromHours(24))
+            {
+                result = timeSpan.Hours > 1 ?
+                    string.Format("há {0} horas atrás", timeSpan.Hours) :
+                    "há uma hora atrás";
+            }
+            else if (timeSpan <= TimeSpan.FromDays(30))
+            {
+                result = timeSpan.Days > 1 ?
+                    string.Format("há {0} dias atrás", timeSpan.Days) :
+                    "ontem";
+            }
+            else if (timeSpan <= TimeSpan.FromDays(365))
+            {
+                result = timeSpan.Days > 30 ?
+                    string.Format("há {0} meses atrás", timeSpan.Days / 30) :
+                    "há um mês atrás";
             }
             else
             {
-                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
-                return years <= 1 ? "um ano atrás" : years + " anos atrás";
+                result = timeSpan.Days > 365 ?
+                    string.Format("há {0} anos atrás", timeSpan.Days / 365) :
+                    "há um ano atrás";
             }
+
+            return numeros + result;
         }
     }
 }
+
 
