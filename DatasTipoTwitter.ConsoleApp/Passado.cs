@@ -25,39 +25,39 @@ namespace DatasTipoTwitter
 
             if (timeSpan <= TimeSpan.FromSeconds(60))
             {
-                result = string.Format("{0} segundos atrás", timeSpan.Seconds);
+                result = string.Format($"{numeros} segundos atrás", timeSpan.Seconds);
             }
             else if (timeSpan <= TimeSpan.FromMinutes(60))
             {
                 result = timeSpan.Minutes > 1 ?
-                    string.Format("há {0} minutos atrás", timeSpan.Minutes) :
+                    string.Format($"há {numeros} minutos atrás", timeSpan.Minutes) :
                     "há um minuto atrás";
             }
             else if (timeSpan <= TimeSpan.FromHours(24))
             {
                 result = timeSpan.Hours > 1 ?
-                    string.Format("há {0} horas atrás", timeSpan.Hours) :
+                    string.Format($"há {numeros} horas atrás", timeSpan.Hours) :
                     "há uma hora atrás";
             }
             else if (timeSpan <= TimeSpan.FromDays(30))
             {
                 result = timeSpan.Days > 1 ?
-                    string.Format("há {0} dias atrás", timeSpan.Days) :
+                    string.Format($"há {numeros} dias atrás", timeSpan.Days) :
                     "ontem";
             }
             else if (timeSpan <= TimeSpan.FromDays(365))
             {
                 result = timeSpan.Days > 30 ?
-                    string.Format("há {0} meses atrás", timeSpan.Days / 30) :
+                    string.Format($"há {numeros} meses atrás", timeSpan.Days / 30) :
                     "há um mês atrás";
             }
             else
             {
                 result = timeSpan.Days > 365 ?
-                    string.Format("há {0} anos atrás", timeSpan.Days / 365) :
+                    string.Format($"há {numeros} anos atrás", timeSpan.Days / 365) :
                     "há um ano atrás";
             }
-            return numeros + result;
+            return result;
         }
     }
 }
