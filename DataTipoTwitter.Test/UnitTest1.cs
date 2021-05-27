@@ -221,7 +221,6 @@ namespace DataTipoTwitter.Test
             }
             catch
             {
-
             }
             DateTime Fim2 = DateTime.Now;
             string Segundos2 = Fim2.Subtract(Inicio2).TotalSeconds.ToString();
