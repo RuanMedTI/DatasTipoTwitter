@@ -8,79 +8,50 @@ namespace DatasTipoTwitter.ConsoleApp
 {
     public class Passado : Dicionario
     {
-
-        public string ValidarDatas(DateTime d)
+        public string ValidarDatas()
         {
-            DatasInseridas();
+            const int SEGUNDO = 1;
+            const int MINUTO = 60 * SEGUNDO;
+            const int HORA = 60 * MINUTO;
+            const int DIA = 24 * HORA;
+            const int MES = 30 * DIA;
 
-            TimeSpan s = DateTime.Now.Subtract(d);
+            DateTime Data1 = new DateTime(2020, 12, 08);
 
-            int dayDiff = (int)s.TotalDays;
+            var ts = new TimeSpan(DateTime.UtcNow.Ticks - Data1.Ticks);
+            double dataValida = Math.Abs(ts.TotalSeconds);
 
-            int secDiff = (int)s.TotalSeconds;
+            if (dataValida < 1 * MINUTO)
+                return ts.Seconds == 1 ? "um segundo atrás" : ts.Seconds + " segundos atrás";
 
-            if (dayDiff < 0 || dayDiff >= 31)
-            {
-                return null;
-            }
+            else if (dataValida < 2 * MINUTO)
+                return "um minuto atrás";
 
-            if (dayDiff == 0)
-            {
+            else if (dataValida < 45 * MINUTO)
+                return ts.Minutes + " minutos atrás";
 
-                if (secDiff < 60)
-                {
-                    return "Agora mesmo";
-                }
+            else if (dataValida < 90 * MINUTO)
+                return "uma hora atrás";
 
-                if (secDiff < 120)
-                {
-                    return "Um minuto atrás";
-                }
+            else if (dataValida < 24 * HORA)
+                return ts.Hours + " horas atrás";
 
-                if (secDiff < 3600)
-                {
-                    return string.Format("{0} minutos atrás",
-                        Math.Floor((double)secDiff / 60));
-                }
-
-                if (secDiff < 7200)
-                {
-                    return "Uma hora atrás";
-                }
-
-                if (secDiff < 86400)
-                {
-                    return string.Format("{0} horas atrás",
-                        Math.Floor((double)secDiff / 3600));
-                }
-            }
-
-            if (dayDiff == 1)
-            {
+            else if (dataValida < 48 * HORA)
                 return "ontem";
-            }
-            if (dayDiff < 7)
-            {
-                return string.Format("{0} dias atrás",
-                    dayDiff);
-            }
-            if (dayDiff < 31)
-            {
-                return string.Format("{0} semanas atrás",
-                    Math.Ceiling((double)dayDiff / 7));
-            }
-            return null;
-        }
 
-        private void DatasInseridas()
-        {
-            Console.WriteLine(ValidarDatas(DateTime.Parse("2011, 05, 11")));
+            else if (dataValida < 30 * DIA)
+                return ts.Days + " dias atrás";
 
-            /*Console.WriteLine(ValidarDatas(DateTime.Now.AddSeconds(-90)));
-            Console.WriteLine(ValidarDatas(DateTime.Now.AddMinutes(-25)));
-            Console.WriteLine(ValidarDatas(DateTime.Now.AddMinutes(-45)));
-            Console.WriteLine(ValidarDatas(DateTime.Now.AddHours(-4)));
-            Console.WriteLine(ValidarDatas(DateTime.Now.AddDays(-15)));*/
+            else if (dataValida < 12 * MES)
+            {
+                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+                return months <= 1 ? "um mês atrás" : months + " meses atrás";
+            }
+            else
+            {
+                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+                return years <= 1 ? "um ano atrás" : years + " anos atrás";
+            }
         }
     }
 }
